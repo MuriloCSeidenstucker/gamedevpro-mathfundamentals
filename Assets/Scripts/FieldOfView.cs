@@ -12,9 +12,9 @@ public class FieldOfView : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        var isVisible = FieldOfViewUtils.IsInsideFieldOfView(transform.position, target.position, viewDistance, viewAngle);
+        var isInsideFieldOfView = FieldOfViewUtils.IsInsideFieldOfView(transform.position, target.position, viewDistance, viewAngle);
 
-        Gizmos.color = isVisible ? Color.green : Color.red;
+        Gizmos.color = isInsideFieldOfView ? Color.green : Color.red;
         Gizmos.DrawWireSphere(transform.position, viewDistance);
         var xDelta = viewDistance * Mathf.Sin(Mathf.Deg2Rad * viewAngle * 0.5f);
         var yDelta = viewDistance * Mathf.Cos(Mathf.Deg2Rad * viewAngle * 0.5f);
