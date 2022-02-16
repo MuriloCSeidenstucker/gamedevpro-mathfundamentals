@@ -4,17 +4,24 @@ public static class FieldOfViewUtils
 {
     public static bool IsInsideFieldOfView(Vector2 fovOrigin, Vector2 target, float viewDistance, float viewAngle)
     {
-        var adjacent = fovOrigin.x - target.x;
-        var opposite = fovOrigin.y - target.y;
-
-        var distAB = Mathf.Sqrt(Mathf.Pow(adjacent, 2) + Mathf.Pow(opposite, 2));
-
-        var isInsideRadiusOfView = distAB <= viewDistance;
-        if (isInsideRadiusOfView)
+        if (target.y < fovOrigin.y)
         {
-            return true;
+            return false;
         }
 
-        return false;
+        var xAxisSide = fovOrigin.x - target.x;
+        var yAxisSide = fovOrigin.y - target.y;
+        var targetDist = Mathf.Sqrt(Mathf.Pow(xAxisSide, 2) + Mathf.Pow(yAxisSide, 2));
+
+        if (targetDist > viewDistance)
+        {
+            return false;
+        }
+
+        var a = Mathf.Abs(target.x - fovOrigin.x);
+        var sinA = a / targetDist;
+        var sinHalfViewAngle = Mathf.Sin(Mathf.Deg2Rad * viewAngle * 0.5f);
+
+        return sinA <= sinHalfViewAngle;
     }
 }
