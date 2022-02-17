@@ -11,17 +11,17 @@ public static class FieldOfViewUtils
 
         var xAxisSide = fovOrigin.x - target.x;
         var yAxisSide = fovOrigin.y - target.y;
-        var targetDist = Mathf.Sqrt(Mathf.Pow(xAxisSide, 2) + Mathf.Pow(yAxisSide, 2));
+        var targetDist = Mathf.Sqrt(xAxisSide * xAxisSide + yAxisSide * yAxisSide);
 
         if (targetDist > viewDistance)
         {
             return false;
         }
 
-        var a = Mathf.Abs(target.x - fovOrigin.x);
-        var sinA = a / targetDist;
+        var oppositeSideTargetAngle = Mathf.Abs(target.x - fovOrigin.x);
+        var sinTargetAngle = oppositeSideTargetAngle / targetDist;
         var sinHalfViewAngle = Mathf.Sin(Mathf.Deg2Rad * viewAngle * 0.5f);
 
-        return sinA <= sinHalfViewAngle;
+        return sinTargetAngle <= sinHalfViewAngle;
     }
 }
