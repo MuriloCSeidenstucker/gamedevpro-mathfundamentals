@@ -8,11 +8,16 @@ public class LinearInterpolation : MonoBehaviour
     [SerializeField] private Transform b;
     [Range(-1, 2)]
     [SerializeField] private float t;
+    private Vector2 A => a.position;
+    private Vector2 B => b.position;
+    private float xt;
+    private float yt;
+    private const float pointSize = 0.1f;
 
     private Vector2 CalculateLerp(float t)
     {
-        var xt = a.position.x + (b.position.x - a.position.x) * t;
-        var yt = a.position.y + (b.position.y - a.position.y) * t;
+        xt = A.x + (B.x - A.x) * t;
+        yt = A.y + (B.y - A.y) * t;
 
         return new Vector2(xt, yt);
     }
@@ -20,17 +25,21 @@ public class LinearInterpolation : MonoBehaviour
     private void OnDrawGizmos() 
     {
         Gizmos.color = Color.white;
-        Gizmos.DrawLine(a.position, new Vector2(a.position.x, b.position.y));
-        Gizmos.DrawLine(a.position, new Vector2(b.position.x, a.position.y));
-        Gizmos.DrawLine(a.position, CalculateLerp(-1));
-        Gizmos.DrawLine(b.position, CalculateLerp(2));
+        Gizmos.DrawLine(A, new Vector2(A.x, B.y));
+        Gizmos.DrawLine(A, new Vector2(B.x, A.y));
+        Gizmos.DrawLine(A, CalculateLerp(-1));
+        Gizmos.DrawLine(B, CalculateLerp(2));
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(a.position, 0.1f);
-        Gizmos.DrawSphere(b.position, 0.1f);
-        Gizmos.DrawLine(a.position, b.position);
+        Gizmos.DrawSphere(A, pointSize);
+        Gizmos.DrawSphere(B, pointSize);
+        Gizmos.DrawLine(A, B);
 
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(CalculateLerp(t), 0.1f);
+        Gizmos.DrawSphere(CalculateLerp(t), pointSize);
+
+        Gizmos.color = Color.gray;
+        Gizmos.DrawSphere(new Vector2(xt, A.y), pointSize);
+        Gizmos.DrawSphere(new Vector2(A.x, yt), pointSize);
     }
 }
