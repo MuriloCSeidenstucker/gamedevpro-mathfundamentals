@@ -16,14 +16,34 @@ public class CircleLineIntersection : MonoBehaviour
     private Vector2 StartLine => startLine.position;
     private Vector2 EndLine => endLine.position;
 
+    private const float radiusCircle = 0.1f;
+
     private void OnDrawGizmos() 
     {
-        var lineColor = Color.red;
-
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(Circle, radius);
 
+        var lineColor = Color.red;
+
+        if (MathUtils.CircleLineIntersection(Circle, radius, StartLine, EndLine, out var p1, out var p2))
+        {
+            Gizmos.color = Color.blue;
+            var isP1Valid = MathUtils.IsPointInFiniteLine(StartLine, EndLine, p1);
+            var isP2Valid = MathUtils.IsPointInFiniteLine(StartLine, EndLine, p2);
+            DrawSphere(p1, isP1Valid);
+            DrawSphere(p2, isP2Valid);
+            lineColor = isP1Valid || isP2Valid ? Color.green : Color.red;
+        }
+
         Gizmos.color = lineColor;
         Gizmos.DrawLine(StartLine, EndLine);
+    }
+
+    private void DrawSphere(Vector3 center, bool isValid)
+    {
+        if (isValid)
+        {
+            Gizmos.DrawSphere(center, radiusCircle);
+        }
     }
 }
