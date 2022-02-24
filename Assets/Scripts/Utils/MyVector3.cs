@@ -15,6 +15,13 @@ public struct MyVector3
         this.Z = z;
     }
 
+    public static implicit operator Vector3(MyVector3 v) => new Vector3(v.X, v.Y, v.Z);
+
+    public static MyVector3 Right => new MyVector3(1, 0, 0);
+    public static MyVector3 Up => new MyVector3(0, 1, 0);
+    public static MyVector3 Forward => new MyVector3(0, 0, 1);
+    public static MyVector3 One => new MyVector3(1, 1, 1);
+
     public float Magnitude => Mathf.Sqrt((X*X)+(Y*Y)+(Z*Z));
 
     public MyVector3 Normalize
