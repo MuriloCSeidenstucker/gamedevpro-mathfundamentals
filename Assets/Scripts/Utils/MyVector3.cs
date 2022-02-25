@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public struct MyVector3
 {
     public float X;
@@ -16,11 +18,13 @@ public struct MyVector3
     }
 
     public static implicit operator Vector3(MyVector3 v) => new Vector3(v.X, v.Y, v.Z);
+    public static explicit operator MyVector3(Vector3 v) => new MyVector3(v.x, v.y, v.z);
 
     public static MyVector3 Right => new MyVector3(1, 0, 0);
     public static MyVector3 Up => new MyVector3(0, 1, 0);
     public static MyVector3 Forward => new MyVector3(0, 0, 1);
     public static MyVector3 One => new MyVector3(1, 1, 1);
+    public static MyVector3 Zero => new MyVector3(0, 0, 0);
 
     public float Magnitude => Mathf.Sqrt((X*X)+(Y*Y)+(Z*Z));
 
@@ -28,7 +32,7 @@ public struct MyVector3
     {
         get
         {
-            var u = new MyVector3(0,0,0);
+            var u = MyVector3.Zero;
             u.X = this.X * (1/this.Magnitude);
             u.Y = this.Y * (1/this.Magnitude);
             u.Z = this.Z * (1/this.Magnitude);
@@ -36,6 +40,8 @@ public struct MyVector3
         }
     }
 
+    public static MyVector3 operator -(MyVector3 a)
+        => new MyVector3(-a.X, -a.Y, -a.Z);
     public static MyVector3 operator +(MyVector3 a, MyVector3 b)
         => new MyVector3(a.X + b.X, a.Y + b.Y, a.Z + b.Z);
 
