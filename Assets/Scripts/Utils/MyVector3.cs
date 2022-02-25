@@ -26,19 +26,10 @@ public struct MyVector3
     public static MyVector3 One => new MyVector3(1, 1, 1);
     public static MyVector3 Zero => new MyVector3(0, 0, 0);
 
-    public float Magnitude => Mathf.Sqrt((X*X)+(Y*Y)+(Z*Z));
+    public float Magnitude => Mathf.Sqrt(SqrMagnitude);
+    public float SqrMagnitude => (X*X)+(Y*Y)+(Z*Z);
 
-    public MyVector3 Normalize
-    {
-        get
-        {
-            var u = MyVector3.Zero;
-            u.X = this.X * (1/this.Magnitude);
-            u.Y = this.Y * (1/this.Magnitude);
-            u.Z = this.Z * (1/this.Magnitude);
-            return u;
-        }
-    }
+    public MyVector3 Normalize => this * (1.0f/Magnitude);
 
     public static MyVector3 operator -(MyVector3 a)
         => new MyVector3(-a.X, -a.Y, -a.Z);

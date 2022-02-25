@@ -25,6 +25,7 @@ public class VectorVisualizer : MonoBehaviour
     [SerializeField] private Operations operation;
 
     private MyVector3 origin => (MyVector3)transform.position;
+    private const float vectorThickness = 5.0f;
 
     private void OnDrawGizmos()
     {
@@ -54,13 +55,16 @@ public class VectorVisualizer : MonoBehaviour
 
     private void DrawVectorsMontage()
     {
-        MyVector3 meetingPoint = new MyVector3(v.X, 0, v.Z);
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(new MyVector3(v.X, 0, 0), meetingPoint);
+        var projX = new MyVector3(v.X, 0, 0);
+        var projY = new MyVector3(0, v.Y, 0);
+        var projZ = new MyVector3(0, 0, v.Z);
+
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(new MyVector3(0, 0, v.Z), meetingPoint);
+        GizmosUtils.DrawVector(projX, projZ, 1, false);
+        Gizmos.color = Color.red;
+        GizmosUtils.DrawVector(projZ, projX, 1, false);
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(v, meetingPoint);
+        GizmosUtils.DrawVector(projX + projZ, projY, 1, false);
         valuesText.text = $"{v.Magnitude}";
     }
 
@@ -89,7 +93,7 @@ public class VectorVisualizer : MonoBehaviour
     private void DrawVector(MyVector3 from, MyVector3 to, Color color)
     {
         Gizmos.color = color;
-        GizmosUtils.DrawVector(from, to);
+        GizmosUtils.DrawVector(from, to, vectorThickness);
     }
 
     private void DrawCoordinates()
