@@ -22,14 +22,14 @@ public struct Matrix2x2
 
     public static Matrix2x2 Identity => new Matrix2x2(1, 0, 0, 1);
 
-    public Vector2 VectorMultiplier(Matrix2x2 m, Vector2 v)
+    public static Vector2 VectorMultiplier(Matrix2x2 m, Vector2 v)
     {
         return new Vector2((m.IX*v.x) + (m.JX*v.y), (m.IY*v.x) + (m.JY*v.y));
     }
 
-    public Vector2 MatrixMultiplier(Matrix2x2[] m, Vector2 v)
+    public static Vector2 MatrixMultiplier(Matrix2x2[] m, Vector2 v, out Matrix2x2 mR)
     {
-        var mR = Matrix2x2.Identity;
+        mR = Matrix2x2.Identity;
         if (m.Length > 0)
         {
             for (int i = 0; i < m.Length; i++)
