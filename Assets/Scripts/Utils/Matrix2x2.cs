@@ -22,26 +22,19 @@ public struct Matrix2x2
 
     public static Matrix2x2 Identity => new Matrix2x2(1, 0, 0, 1);
 
-    public static Vector2 VectorMultiplier(Matrix2x2 m, Vector2 v)
-    {
-        return new Vector2((m.IX*v.x) + (m.JX*v.y), (m.IY*v.x) + (m.JY*v.y));
-    }
+    public static Vector2 operator *(Matrix2x2 m, Vector2 v)
+        => new Vector2((m.IX*v.x) + (m.JX*v.y), (m.IY*v.x) + (m.JY*v.y));
 
-    public static Vector2 MatrixMultiplier(Matrix2x2[] m, Vector2 v, out Matrix2x2 mR)
+    public static Vector2 operator *(Vector2 v, Matrix2x2 m)
+        => m * v;
+
+    public static Matrix2x2 operator *(in Matrix2x2 m1, in Matrix2x2 m2)
     {
-        mR = Matrix2x2.Identity;
-        if (m.Length > 0)
-        {
-            for (int i = 0; i < m.Length; i++)
-            {
-                var cM = m[i];
-                var a = (cM.IX*mR.IX) + (cM.JX*mR.IY);
-                var b = (cM.IY*mR.IX) + (cM.JY*mR.IY);
-                var c = (cM.IX*mR.JX) + (cM.JX*mR.JY);
-                var d = (cM.IY*mR.JX) + (cM.JY*mR.JY);
-                mR = new Matrix2x2(a, b, c, d);
-            }
-        }
-        return VectorMultiplier(mR, v);
+        var result = new Matrix2x2();
+        result.IX = (m2.IX*m1.IX) + (m2.JX*m1.IY);
+        result.IY = (m2.IY*m1.IX) + (m2.JY*m1.IY);
+        result.JX = (m2.IX*m1.JX) + (m2.JX*m1.JY);
+        result.JY = (m2.IY*m1.JX) + (m2.JY*m1.JY);
+        return result;
     }
 }
