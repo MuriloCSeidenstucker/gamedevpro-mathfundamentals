@@ -2,7 +2,6 @@ using UnityEngine;
 
 public static class GizmosUtils 
 {
-    
     private const float defaultThickness = 8.0f;
     
     public static void DrawRay(Vector3 from, Vector3 direction, float width = defaultThickness)
