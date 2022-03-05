@@ -235,8 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e745340e3cac8b4099a87269d62a591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  v: {x: 0.4, y: -0.59, z: 7.25}
-  w: {x: 126.1, y: 15.48, z: -4.08}
+  v: {x: 2.84, y: -3.72, z: 2.42}
+  w: {x: -4.67, y: 4.05, z: -11.27}
   handedness: 0
   forceOrthogonalSystem: 1
 --- !u!4 &329954986
