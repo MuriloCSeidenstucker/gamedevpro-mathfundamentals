@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 9e52c160328d68b4799c73e4e5cd0ed7
 ModelImporter:
-  serializedVersion: 19301
+  serializedVersion: 21100
   internalIDToNameTable:
   - first:
       1: 100000
@@ -419,7 +419,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert26SG
-    second: {fileID: 2100000, guid: 731650be44c05f8459778c3726da7e7f, type: 2}
+    second: {fileID: 2100000, guid: 2999659486d6a174c91b22df4ccca177, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -466,6 +466,7 @@ ModelImporter:
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 1
@@ -475,6 +476,9 @@ ModelImporter:
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
@@ -833,6 +837,7 @@ ModelImporter:
   animationType: 2
   humanoidOversampling: 1
   avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

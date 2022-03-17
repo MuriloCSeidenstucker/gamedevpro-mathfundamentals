@@ -46,8 +46,34 @@ public class CharacterMovement : MonoBehaviour
         {
             var hit = hits[i];
             var projectedVelocity = Vector3.ProjectOnPlane(Velocity, hit.normal);
+            if (projectedVelocity == Vector3.zero)
+            {  
+                projectedVelocity = SlideInXZAxis(projectedVelocity, hit.point, hit.collider.bounds);
+            }
             Velocity = projectedVelocity.normalized * Velocity.magnitude;
             break;
+        }
+    }
+
+    private Vector3 SlideInXZAxis(Vector3 velocity, Vector3 reference, Bounds bounds)
+    {
+        if (Velocity.z != 0)
+        {
+            if(bounds.max.x - reference.x < 
+                reference.x - bounds.min.x)
+            {
+                return new Vector3(1, velocity.y, velocity.z);
+            }
+            return new Vector3(-1, velocity.y, velocity.z);
+        }
+        else
+        {
+            if (bounds.max.z - reference.z <
+                reference.z - bounds.min.z)
+            {
+                return new Vector3(velocity.x, velocity.y, 1);
+            }
+            return new Vector3(velocity.x, velocity.y, -1);
         }
     }
 
