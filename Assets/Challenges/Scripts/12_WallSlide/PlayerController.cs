@@ -17,8 +17,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        characterMovement.MoveCharacter(DirectionInput());
+    }
+
+    private Vector3 DirectionInput()
+    {
         var horizontal = Input.GetAxisRaw(Horizontal);
         var vertical = Input.GetAxisRaw(Vertical);
-        characterMovement.SetInput(horizontal, vertical);
+        return new Vector3(horizontal, 0, vertical);
     }
 }

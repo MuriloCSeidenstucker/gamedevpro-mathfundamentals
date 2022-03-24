@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 222cc8dcd42dbfa479526b94ecefc5a7, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -542,7 +542,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: 16.809975, y: 12.849054, z: 22.672977}
+  m_LocalPosition: {x: 15.291, y: 8.617, z: 27.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -561,7 +561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1137396674}
-  arm: {x: 0, y: 11, z: -9}
+  arm: {x: 0, y: 7, z: -5}
 --- !u!1001 &966762882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1165,15 +1165,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 144981108345587704, guid: 5b4a65816cf12ef4f9acd0f88ee48c6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.809975
+      value: 15.291
       objectReference: {fileID: 0}
     - target: {fileID: 144981108345587704, guid: 5b4a65816cf12ef4f9acd0f88ee48c6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8490548
+      value: 1.617
       objectReference: {fileID: 0}
     - target: {fileID: 144981108345587704, guid: 5b4a65816cf12ef4f9acd0f88ee48c6b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 31.672977
+      value: 32.5
       objectReference: {fileID: 0}
     - target: {fileID: 144981108345587704, guid: 5b4a65816cf12ef4f9acd0f88ee48c6b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1209,7 +1209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1948882456486010695, guid: 5b4a65816cf12ef4f9acd0f88ee48c6b, type: 3}
       propertyPath: moveSpeed
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1948882456486010695, guid: 5b4a65816cf12ef4f9acd0f88ee48c6b, type: 3}
       propertyPath: colliderSize.x
