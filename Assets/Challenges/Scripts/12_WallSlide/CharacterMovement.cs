@@ -5,13 +5,16 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 10;
+    [SerializeField] private float rotationSpeed = 40f;
     [SerializeField] private float acceleration = 100;
+    [SerializeField] private Transform sprite;
 
     [Header("Collision")]
     [SerializeField] private Vector3 colliderSize;
 
     private Vector3 targetVelocity;
     public Vector3 Velocity { get; private set; }
+    public Vector3 rotDir {get; private set; }
 
     private Vector3 ColliderExtents => colliderSize * 0.5f;
     private Vector3 ColliderHorizontalExtents => new Vector3(ColliderExtents.x, ColliderExtents.y * 0.5f, ColliderExtents.z);
@@ -25,17 +28,31 @@ public class CharacterMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Velocity = Vector3.MoveTowards(Velocity, targetVelocity, Time.fixedDeltaTime * acceleration);
+
         CheckCollisionHorizontal();
         var targetPos = transform.position + Velocity * Time.fixedDeltaTime;
         CheckCollisionVertical(ref targetPos);
 
+        RotateCharacter();
+
         transform.position = targetPos;
     }
 
-    public void MoveCharacter(in Vector3 movement)
+    public void MoveCharacter(in Vector3 direction)
     {
-        targetVelocity = movement * moveSpeed;
+        targetVelocity = direction * moveSpeed;
     }
+
+    private void RotateCharacter()
+    {
+        if (Velocity != Vector3.zero)
+        {
+            sprite.rotation = Quaternion.Slerp(sprite.rotation, Quaternion.LookRotation(Velocity), Time.fixedDeltaTime * rotationSpeed);
+            rotDir = Velocity;
+        }
+        sprite.rotation = Quaternion.Slerp(sprite.rotation, Quaternion.LookRotation(rotDir), Time.fixedDeltaTime * rotationSpeed);
+    }
+
 
     private void CheckCollisionHorizontal()
     {
@@ -109,7 +126,7 @@ public class CharacterMovement : MonoBehaviour
             transform.position + Vector3.up * ColliderExtents.y,
             Vector3.down,
             vHits,
-            ColliderExtents.magnitude);
+            10.0f);
 
         for (int i = 0; i < vHitCount; i++)
         {
