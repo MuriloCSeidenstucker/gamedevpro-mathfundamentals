@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 1941540348}
   - component: {fileID: 1941540352}
   - component: {fileID: 1941540351}
+  - component: {fileID: 1941540353}
   - component: {fileID: 1941540350}
   - component: {fileID: 1941540349}
   m_Layer: 0
@@ -252,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aa282b78a63e6b4fb2dd0c234a37562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scale: {x: 0, y: 0, z: 0}
+  scale: {x: 1, y: 1, z: 1}
 --- !u!114 &1941540350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,10 +263,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1941540347}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98ad065507cb517478148f16aa8779d9, type: 3}
+  m_Script: {fileID: 11500000, guid: d2b9fb0adcfa0ff46840c21d89274fa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0, z: 0}
 --- !u!114 &1941540351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,7 +279,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 347a62be1ea8db64bbf7491e85c883a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transformations: []
+  transformations:
+  - {fileID: 1941540349}
+  - {fileID: 1941540350}
+  - {fileID: 1941540353}
 --- !u!114 &1941540352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,3 +296,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1941540353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941540347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbaf432310831264495032c0e046c758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translation: {x: 0, y: 0, z: 0}
