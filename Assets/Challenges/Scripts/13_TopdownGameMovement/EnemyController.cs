@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterMovement))]
-[RequireComponent(typeof(TopdownFOV))]
+[RequireComponent(typeof(CharacterMovement), typeof(TopdownFOV))]
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private Transform player;

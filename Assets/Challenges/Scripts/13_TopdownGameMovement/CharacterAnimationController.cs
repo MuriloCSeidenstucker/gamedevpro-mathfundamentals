@@ -6,6 +6,7 @@ using UnityEngine;
 public class CharacterAnimationController : MonoBehaviour
 {
     [SerializeField] private CharacterMovement charMovement;
+    
     private Animator an;
 
     private void Awake()
@@ -13,8 +14,9 @@ public class CharacterAnimationController : MonoBehaviour
         an = GetComponent<Animator>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        an.SetFloat(CharacterConstants.Velocity, charMovement.Velocity.magnitude);
+        var velocityPercent = charMovement.Velocity.sqrMagnitude / (charMovement.MaxSpeed * charMovement.MaxSpeed);
+        an.SetFloat(CharacterConstants.Velocity, velocityPercent);
     }
 }

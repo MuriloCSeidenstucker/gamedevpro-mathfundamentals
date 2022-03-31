@@ -15,9 +15,10 @@ public class CharacterMovement : MonoBehaviour
     private Vector3 targetVelocity;
     public Vector3 Velocity { get; private set; }
     public Vector3 rotDir {get; private set; }
-
+    
+    public float MaxSpeed => moveSpeed;
     private Vector3 ColliderExtents => colliderSize * 0.5f;
-    private Vector3 ColliderHorizontalExtents => new Vector3(ColliderExtents.x, ColliderExtents.y * 0.5f, ColliderExtents.z);
+    private Vector3 ColliderHorizontalExtents => new Vector3(ColliderExtents.x, ColliderExtents.y * 0.25f, ColliderExtents.z);
 
     private RaycastHit[] hits = new RaycastHit[10];
     private float rayLength => Velocity.magnitude * Time.fixedDeltaTime;
